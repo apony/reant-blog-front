@@ -11,3 +11,84 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dt,
+dd,
+th,
+td,
+tr,
+p,
+span,
+a,
+form,
+input,
+select,
+legend,
+textarea,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 12px;
+  font-family: "宋体";
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: black;
+  display: block;
+  text-decoration: none;
+}
+
+img {
+  /*针对ie浏览器中，图片有边框的兼容问题*/
+  border: 0px;
+  /*针对ie6及以下版本浏览器，往div、dt、li插入图片时，图片下方有3px间隙的兼容问题*/
+  _display: block;
+}
+
+.leftfloat {
+  float: left;
+  /*针对ie6及以下版本浏览器，部分浮动元素双倍margin边距的兼容问题*/
+  _display: inline;
+}
+
+.rightfloat {
+  float: right;
+  _display: inline;
+}
+
+/*万能清除浮动法*/
+.clearfix:after {
+  content: ".";
+  clear: both;
+  display: block;
+  visibility: hidden;
+  overflow: hidden;
+  /*解决老版本浏览器高度问题*/
+  font-size: 1px;
+  height: 0px;
+}
+
+/*设置超出父元素宽度子元素自动出现省略号*/
+.set_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
