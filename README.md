@@ -1,8 +1,8 @@
 # komo-blog-back
 
-Blog Frontend Project【React Frame and Taro UI Frame】
+Blog Frontend Project【React Frame and Ant Design UI Frame】
 
-> 我的博客：react+taro
+> 我的博客：react+ant-design
 
 ## 介绍
 
