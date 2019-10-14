@@ -58,7 +58,7 @@ class MainLayout extends Component {
       //     </Content>
       //     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       // </Layout>
-      <Layout>
+      <Layout style={{ backgroundImage: 'url(' + require('../assets/images/bg.gif') + ')' }}>
         <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
           <div className="logo" />
           <Menu
@@ -78,7 +78,7 @@ class MainLayout extends Component {
             <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
-          <div style={{ background: '#fff', padding: 24, minHeight: 750 }}>Content</div>
+          <div style={{ background: '#fff', padding: '24px 0', minHeight: 750 }}>Content</div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>

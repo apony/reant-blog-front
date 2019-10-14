@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect} from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import MainLayout from './pages/mainLayout'
 import 'antd/dist/antd.css';
 
-function App() {
+function App () {
   return (
     <div className="App">
       <BrowserRouter>
