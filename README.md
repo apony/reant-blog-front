@@ -2,11 +2,11 @@
 
 Blog Frontend Project【React Frame and Ant Design UI Frame】
 
-> 我的博客：react+ant-design
+> 技术栈：react+ant-design
 
 ## 介绍
 
-- 此项目为我的博客网站
+- 此项目为个人博客前端网站
 
 ## 安装依赖
 
@@ -19,3 +19,7 @@ npm install
 ```shell
 npm run dev
 ```
+
+## Tip
+1.运行服务：http://localhost:6666
+2.代理服务：http://localhost:8000
