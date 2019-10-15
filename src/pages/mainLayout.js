@@ -59,12 +59,15 @@ class MainLayout extends Component {
       //     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       // </Layout>
       <Layout style={{ backgroundImage: 'url(' + require('../assets/images/bg.gif') + ')' }}>
-        <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-          <div className="logo" />
+
+        <Header style={{ zIndex: 1, width: '100%', padding: '0 100px', background: '#fff' }}>
+          <div className="logo">
+            <span />
+          </div>
           <Menu
-            theme="dark"
+            theme="light"
             mode="horizontal"
-            defaultSelectedKeys={['2']}
+            defaultSelectedKeys={['1']}
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1">nav 1</Menu.Item>
@@ -72,8 +75,8 @@ class MainLayout extends Component {
             <Menu.Item key="3">nav 3</Menu.Item>
           </Menu>
         </Header>
-        <Content style={{ padding: '0 50px', marginTop: 64 }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
+        <Content style={{ padding: '0 100px' }}>
+          <Breadcrumb style={{ margin: '16px 0', padding: '10px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
