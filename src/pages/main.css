@@ -1,14 +1,7 @@
-.ant-layout-header {
-  background: #F8F9FA;
-  border-bottom: 2px solid #000000;
-  overflow: hidden;
-}
-
 .ant-layout-header .logo {
   width: 170px;
-  height: 64px;
-  margin-right: 20px;
-  line-height: 64px;
+  height: 66px;
+  line-height: 66px;
   float: left;
 }
 
@@ -32,7 +25,6 @@
   font-size: 14px;
 }
 
-.ant-menu,
 .ant-menu-item,
 .ant-menu-item-selected {
   border: none !important;
