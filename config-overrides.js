@@ -1,10 +1,13 @@
 const path = require('path');
-function resolve(dir) {
-    return path.join(__dirname, '.', dir)
-}
-module.exports = function override(config, env) {
-    config.resolve.alias = {
-        '@': resolve('src')
-    }
-    return config;
-}
+const {
+  override,
+  addWebpackAlias
+} = require("customize-cra");
+
+
+module.exports = override(
+  // 配置路径别名
+  addWebpackAlias({
+    '@': path.resolve(__dirname, 'src')
+  })
+)

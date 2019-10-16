@@ -5,7 +5,11 @@
   "dependencies": {
     "antd": "^3.23.6",
     "axios": "^0.19.0",
+    "babel-plugin-import": "^1.12.2",
+    "customize-cra": "^0.8.0",
     "http-proxy-middleware": "^0.20.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0"
@@ -14,7 +18,7 @@
     "dev": "set PORT=7000&&react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app eject"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
