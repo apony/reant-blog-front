@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 // import { Route, Redirect }    from 'react-router-dom'
-import './main.css'
+import './main.less'
 import { getBlogList } from '@/api/blog'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -71,20 +71,39 @@ class MainLayout extends Component {
             style={{ lineHeight: '62px' }}
           >
             <Menu.Item key="1">
-              <Icon type="home" style={{ fontSize: '16px' }} />
+              <Icon type="home" theme="filled" />
               首页
             </Menu.Item>
-            <Menu.Item key="2">nav2</Menu.Item>
-            <Menu.Item key="3">nav3</Menu.Item>
+            <Menu.Item key="2">
+              <Icon type="read" theme="filled" />
+              札记
+            </Menu.Item>
+            <Menu.Item key="3">
+              <Icon type="edit" />
+              一席话
+            </Menu.Item>
+            <Menu.Item key="4">
+              <Icon type="usb" theme="filled" />
+              资源
+            </Menu.Item>
+            <Menu.Item key="5">
+              <Icon type="share-alt" />
+              网站分享
+            </Menu.Item>
+            <Menu.Item key="6">
+              <Icon type="code" theme="filled" />
+              代码
+            </Menu.Item>
+            <Menu.Item key="7" className="account">
+              登录/注册
+            </Menu.Item>
           </Menu>
         </Header>
         <Content style={{ padding: '0 100px' }}>
-          <Breadcrumb style={{ margin: '16px 0', padding: '10px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
+          <Breadcrumb>
+            <Breadcrumb.Item>首页</Breadcrumb.Item>
           </Breadcrumb>
-          <div style={{ background: '#fff', padding: '24px 0', minHeight: 750 }}>Content</div>
+          <div className="ant-content">Content</div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>

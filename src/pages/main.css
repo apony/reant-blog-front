@@ -2,14 +2,12 @@
   background: #F8F9FA;
   border-bottom: 2px solid #000000;
 }
-
 .ant-layout-header .logo {
   width: 170px;
   height: 62px;
   line-height: 62px;
   float: left;
 }
-
 .ant-layout-header .logo span {
   display: inline-block;
   position: relative;
@@ -19,19 +17,37 @@
   background: url('../assets/images/logo.png') no-repeat center;
   background-size: contain;
 }
-
 .ant-layout-header .logo:after {
   content: ' apony.xyz 竹小马';
   font-size: 18px;
   font-weight: 600;
 }
-
+.ant-layout-header .ant-menu-item .anticon {
+  font-size: 16px;
+}
+.ant-layout-header .account {
+  padding: 0 !important;
+  float: right;
+  font-weight: 600;
+}
+.ant-layout-header .ant-menu,
+.ant-layout-header .ant-menu-item,
+.ant-layout-header .ant-menu-item-selected {
+  border: none !important;
+}
+.ant-breadcrumb {
+  margin: 12px 0 !important;
+  padding: 16px !important;
+  border: 1px solid #dee2e6;
+  background: #fff;
+}
 .ant-breadcrumb span {
   font-size: 14px;
 }
-
-.ant-menu,
-.ant-menu-item,
-.ant-menu-item-selected {
-  border: none !important;
+.ant-content {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  margin-bottom: 12px;
+  padding: 24px 16px;
+  min-height: 750px;
 }
