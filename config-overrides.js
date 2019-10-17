@@ -1,10 +1,24 @@
+
+const { override, fixBabelImports, addLessLoader, addWebpackAlias } = require('customize-cra');
 const path = require('path');
-function resolve(dir) {
-    return path.join(__dirname, '.', dir)
+function resolve (dir) {
+  return path.join(__dirname, '.', dir)
 }
-module.exports = function override(config, env) {
-    config.resolve.alias = {
-        '@': resolve('src')
-    }
-    return config;
-}
+
+module.exports = override(
+  // antd按需加载，不需要每个页面都引入“antd/dist/antd.css”了
+  fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: true  //这里一定要写true，css和less都不行
+  }),
+  // 配置路径别名
+  addWebpackAlias({
+    '@': resolve("src")
+  }),
+  addLessLoader({
+    javascriptEnabled: true,
+    //下面这行很特殊，这里是更改主题的关键，这里我只更改了主色，当然还可以更改其他的，下面会详细写出。
+    modifyVars: { "@primary-color": "#01a3a4" }
+  })
+)
