@@ -2,7 +2,8 @@ import React, { Component, Fragment } from "react";
 // import { Route, Redirect }    from 'react-router-dom'
 import './main.less'
 import { getBlogList } from '@/api/blog'
-import { Layout, Menu, Breadcrumb, Icon, Row, Col } from 'antd';
+import userService from '@/api/user'
+import { Layout, Menu, Breadcrumb, Icon, Row, Col, Drawer, Input, Button} from 'antd';
 const { Header, Content, Footer } = Layout;
 
 class MainLayout extends Component {
@@ -102,7 +103,7 @@ class MainLayout extends Component {
                   <Icon type="code" theme="filled" />
                   代码
                     </Menu.Item>
-                <Menu.Item key="7" className="account">
+                <Menu.Item key="7" className="account" onClick={this.switchLoginDrawer}>
                   登录/注册
                     </Menu.Item>
               </Menu>
@@ -123,7 +124,21 @@ class MainLayout extends Component {
           </Col>
         </Row>
 
-
+          <Drawer title='登录/注册'
+                  closable={true}
+                  maskClosable={true}
+                  onClose={this.switchLoginDrawer}
+                  visible={this.state.showLogin}>
+              <Input placeholder='请输入登录账号'
+                     value={this.state.userAccount}
+                     onChange={(e)=>{this.setState({userAccount:e.target.value})}}/>
+              <Input placeholder='请输入密码'
+                     type='password'
+                     style={{marginTop:'30px'}}
+                     value={this.state.userPassword}
+                     onChange={(e)=>{this.setState({userPassword:e.target.value})}}/>
+              <Button type='primary' style={{marginTop:'30px'}} onClick={this.login}>登录</Button>
+          </Drawer>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
     )
