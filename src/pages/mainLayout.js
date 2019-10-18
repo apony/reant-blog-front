@@ -2,9 +2,8 @@ import React, { Component, Fragment } from "react";
 // import { Route, Redirect }    from 'react-router-dom'
 import './main.less'
 import { getBlogList } from '@/api/blog'
-import userService from '@/api/user'
-import { Layout, Menu, Breadcrumb, Icon, Drawer, Input, Button} from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, Menu, Breadcrumb, Icon, Row, Col } from 'antd';
+const { Header, Content, Footer } = Layout;
 
 class MainLayout extends Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class MainLayout extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       // <Fragment>
       //   <div className="views">
@@ -64,73 +63,73 @@ class MainLayout extends Component {
       //     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       // </Layout>
       <Layout style={{ backgroundImage: 'url(' + require('../assets/images/bg.gif') + ')' }}>
+        <Row>
 
-        <Header style={{ zIndex: 1, width: '100%', padding: '0 100px', background: '#fff' }}>
-          <div className="logo">
-            <span />
-          </div>
-          <Menu
-            theme="light"
-            mode="horizontal"
-            defaultSelectedKeys={['1']}
-            style={{ lineHeight: '62px' }}
-          >
-            <Menu.Item key="1">
-              <Icon type="home" theme="filled" />
-              首页
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="read" theme="filled" />
-              札记
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="edit" />
-              一席话
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Icon type="usb" theme="filled" />
-              资源
-            </Menu.Item>
-            <Menu.Item key="5">
-              <Icon type="share-alt" />
-              网站分享
-            </Menu.Item>
-            <Menu.Item key="6">
-              <Icon type="code" theme="filled" />
-              代码
-            </Menu.Item>
-            <Menu.Item key="7" className="account" onClick={this.switchLoginDrawer}>
-              登录/注册
-            </Menu.Item>
-          </Menu>
-        </Header>
-        <Content style={{ padding: '0 100px' }}>
-          <Breadcrumb>
-            <Breadcrumb.Item>首页</Breadcrumb.Item>
-          </Breadcrumb>
-          <div className="ant-content">Content</div>
-          <Drawer title='登录/注册'
-                  closable={true}
-                  maskClosable={true}
-                  onClose={this.switchLoginDrawer}
-                  visible={this.state.showLogin}>
-              <Input placeholder='请输入登录账号'
-                     value={this.state.userAccount}
-                     onChange={(e)=>{this.setState({userAccount:e.target.value})}}/>
-              <Input placeholder='请输入密码'
-                     type='password'
-                     style={{marginTop:'30px'}}
-                     value={this.state.userPassword}
-                     onChange={(e)=>{this.setState({userPassword:e.target.value})}}/>
-              <Button type='primary' style={{marginTop:'30px'}} onClick={this.login}>登录</Button>
-          </Drawer>
-        </Content>
+          <Header className="xsPadding">
+            <Col className="gutter-row" sm={{ span: 22, offset: 1 }} xl={{ span: 18, offset: 3 }}>
+
+              <div className="logo">
+                <span />
+              </div>
+              <Menu
+                className="navBar"
+                theme="light"
+                mode="horizontal"
+                defaultSelectedKeys={['1']}
+                style={{ lineHeight: '62px' }}
+              >
+                <Menu.Item key="1">
+                  <Icon type="home" theme="filled" />
+                  首页
+                    </Menu.Item>
+                <Menu.Item key="2">
+                  <Icon type="read" theme="filled" />
+                  札记
+                    </Menu.Item>
+                <Menu.Item key="3">
+                  <Icon type="edit" />
+                  一席话
+                    </Menu.Item>
+                <Menu.Item key="4">
+                  <Icon type="usb" theme="filled" />
+                  资源
+                    </Menu.Item>
+                <Menu.Item key="5">
+                  <Icon type="share-alt" />
+                  网站分享
+                    </Menu.Item>
+                <Menu.Item key="6">
+                  <Icon type="code" theme="filled" />
+                  代码
+                    </Menu.Item>
+                <Menu.Item key="7" className="account">
+                  登录/注册
+                    </Menu.Item>
+              </Menu>
+              <div className="toggleNavBar">
+                <Icon type="menu" />
+              </div>
+            </Col>
+          </Header>
+
+
+          <Col className="gutter-row" sm={{ span: 22, offset: 1 }} xl={{ span: 18, offset: 3 }}>
+            <Content className="xsPadding">
+              <Breadcrumb>
+                <Breadcrumb.Item>首页</Breadcrumb.Item>
+              </Breadcrumb>
+              <div className="ant-content">Content</div>
+            </Content>
+          </Col>
+        </Row>
+
+
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
     )
   }
   //当组件输出到 DOM 后会执行 componentDidMount()
-  componentDidMount () {
+  componentDidMount() {
     const _this = this;    //先存一下this，以防使用箭头函数this会指向我们不希望它所指向的对象。
     // getBlogList(1, 10)
     //   .then(function (response) {
