@@ -2,13 +2,18 @@ import React, { Component, Fragment } from "react";
 // import { Route, Redirect }    from 'react-router-dom'
 import './main.less'
 import { getBlogList } from '@/api/blog'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import userService from '@/api/user'
+import { Layout, Menu, Breadcrumb, Icon, Drawer, Input, Button} from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
 class MainLayout extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      showLogin: false,
+      userAccount: '',
+      userPassword: '',
+    }
   }
 
   render () {
@@ -94,7 +99,7 @@ class MainLayout extends Component {
               <Icon type="code" theme="filled" />
               代码
             </Menu.Item>
-            <Menu.Item key="7" className="account">
+            <Menu.Item key="7" className="account" onClick={this.switchLoginDrawer}>
               登录/注册
             </Menu.Item>
           </Menu>
@@ -104,6 +109,21 @@ class MainLayout extends Component {
             <Breadcrumb.Item>首页</Breadcrumb.Item>
           </Breadcrumb>
           <div className="ant-content">Content</div>
+          <Drawer title='登录/注册'
+                  closable={true}
+                  maskClosable={true}
+                  onClose={this.switchLoginDrawer}
+                  visible={this.state.showLogin}>
+              <Input placeholder='请输入登录账号'
+                     value={this.state.userAccount}
+                     onChange={(e)=>{this.setState({userAccount:e.target.value})}}/>
+              <Input placeholder='请输入密码'
+                     type='password'
+                     style={{marginTop:'30px'}}
+                     value={this.state.userPassword}
+                     onChange={(e)=>{this.setState({userPassword:e.target.value})}}/>
+              <Button type='primary' style={{marginTop:'30px'}} onClick={this.login}>登录</Button>
+          </Drawer>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
@@ -112,21 +132,40 @@ class MainLayout extends Component {
   //当组件输出到 DOM 后会执行 componentDidMount()
   componentDidMount () {
     const _this = this;    //先存一下this，以防使用箭头函数this会指向我们不希望它所指向的对象。
-    getBlogList(1, 10)
-      .then(function (response) {
-        console.log(response)
-        // _this.setState({
-        //   users:response.data,
-        //   isLoaded:true
-        // });
-      })
-      .catch(function (error) {
-        console.log(error);
-        _this.setState({
-          isLoaded: false,
-          error: error
-        })
-      })
+    // getBlogList(1, 10)
+    //   .then(function (response) {
+    //     console.log(response)
+    //     // _this.setState({
+    //     //   users:response.data,
+    //     //   isLoaded:true
+    //     // });
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     _this.setState({
+    //       isLoaded: false,
+    //       error: error
+    //     })
+    //   })
+  }
+
+  switchLoginDrawer = () => {
+    this.setState({
+      showLogin: !this.state.showLogin
+    })
+  }
+
+  login = () => {
+    userService.login({
+      account: this.state.userAccount,
+      password: this.state.userPassword
+    }).then(res => {
+      if(res.success){
+        console.log(res.data)
+      }else{
+        console.log(res.msg)
+      }
+    })
   }
 
   tabbClick = (e) => {

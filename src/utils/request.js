@@ -8,7 +8,7 @@ const service = axios.create({
   timeout: 50000, // 请求超时时间
   withCredentials: true, // 跨域携带cookie
   xsrfCookieName: 'xsrf-token'  //当创建实例的时候配置默认配置
-})  
+})
 
 
 // 添加请求拦截器，这里面可以配置一下每次请求都需要携带的参数，比如 token，timestamp等等，根据项目自己配置
@@ -59,9 +59,9 @@ service.interceptors.response.use(
       return Promise.reject(new Error('网络异常，请稍后重试'))
     }
     const res = response.data
-    if (res.success) {
+    // if (res.success) {
       return res
-    }
+    // }
   },
   error => {
     return Promise.reject(error)
