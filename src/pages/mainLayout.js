@@ -4,6 +4,7 @@ import './main.less'
 import { getBlogList } from '@/api/blog'
 import userService from '@/api/user'
 import { Layout, Menu, Breadcrumb, Icon, Row, Col, Drawer, Input, Button} from 'antd';
+import LoginDrawer from '@/component/LoginDrawer'
 const { Header, Content, Footer } = Layout;
 
 class MainLayout extends Component {
@@ -11,8 +12,7 @@ class MainLayout extends Component {
     super(props)
     this.state = {
       showLogin: false,
-      userAccount: '',
-      userPassword: '',
+      userInfo: null,
     }
   }
 
@@ -103,7 +103,7 @@ class MainLayout extends Component {
                   <Icon type="code" theme="filled" />
                   代码
                     </Menu.Item>
-                <Menu.Item key="7" className="account" onClick={this.switchLoginDrawer}>
+                <Menu.Item key="7" className="account" onClick={this.showLoginDrawer}>
                   登录/注册
                     </Menu.Item>
               </Menu>
@@ -112,6 +112,7 @@ class MainLayout extends Component {
               </div>
             </Col>
           </Header>
+          <LoginDrawer visible={this.state.showLogin} onClose={this.hideLoginDrawer} onLogin={this.onLogin}/>
 
 
           <Col className="gutter-row" sm={{ span: 22, offset: 1 }} xl={{ span: 18, offset: 3 }}>
@@ -119,26 +120,10 @@ class MainLayout extends Component {
               <Breadcrumb>
                 <Breadcrumb.Item>首页</Breadcrumb.Item>
               </Breadcrumb>
-              <div className="ant-content">Content</div>
+              <div className="ant-content">{this.state.userInfo?(`Hello,${this.state.userInfo.nickname||this.state.userInfo.account}`):'Content'}</div>
             </Content>
           </Col>
         </Row>
-
-          <Drawer title='登录/注册'
-                  closable={true}
-                  maskClosable={true}
-                  onClose={this.switchLoginDrawer}
-                  visible={this.state.showLogin}>
-              <Input placeholder='请输入登录账号'
-                     value={this.state.userAccount}
-                     onChange={(e)=>{this.setState({userAccount:e.target.value})}}/>
-              <Input placeholder='请输入密码'
-                     type='password'
-                     style={{marginTop:'30px'}}
-                     value={this.state.userPassword}
-                     onChange={(e)=>{this.setState({userPassword:e.target.value})}}/>
-              <Button type='primary' style={{marginTop:'30px'}} onClick={this.login}>登录</Button>
-          </Drawer>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
     )
@@ -163,22 +148,21 @@ class MainLayout extends Component {
     //   })
   }
 
-  switchLoginDrawer = () => {
+  showLoginDrawer = () => {
     this.setState({
-      showLogin: !this.state.showLogin
+      showLogin: true
     })
   }
 
-  login = () => {
-    userService.login({
-      account: this.state.userAccount,
-      password: this.state.userPassword
-    }).then(res => {
-      if(res.success){
-        console.log(res.data)
-      }else{
-        console.log(res.msg)
-      }
+  hideLoginDrawer = () => {
+    this.setState({
+      showLogin: false
+    })
+  }
+
+  onLogin = (userInfo) => {
+    this.setState({
+      userInfo: userInfo
     })
   }
 

@@ -12,6 +12,19 @@ function login(data) {
     })
 }
 
+/**
+ *  用户注册
+ * @param data
+ */
+function register(data) {
+    return request({
+        url: 'api/user/register',
+        method: 'POST',
+        data: data
+    })
+}
+
 export default {
-    login
+    login,
+    register
 }
