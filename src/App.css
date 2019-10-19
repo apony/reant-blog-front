@@ -1,22 +1,78 @@
-/* .App {
-  text-align: center;
+.ant-layout-header {
+  background: #F8F9FA !important;
+  border-bottom: 2px solid #000000;
+  padding: 0 !important;
 }
-
-.App-logo {
-  height: 40vmin;
+.ant-layout-header .toggleNavBar {
+  display: none;
+  float: right;
+  font-size: 18px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ant-layout-header .toggleNavBar i {
+  cursor: pointer;
 }
-
-.App-link {
-  color: #09d3ac;
-} */
+.ant-layout-header .logo {
+  width: 170px;
+  height: 62px;
+  line-height: 62px;
+  float: left;
+}
+.ant-layout-header .logo span {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background: url('assets/images/logo.png') no-repeat center;
+  background-size: contain;
+}
+.ant-layout-header .logo:after {
+  content: ' apony.xyz 竹小马';
+  font-size: 18px;
+  font-weight: 600;
+}
+.ant-layout-header .ant-menu-item .anticon {
+  font-size: 16px;
+}
+.ant-layout-header .account {
+  padding: 0 !important;
+  float: right;
+  font-weight: 600;
+}
+.ant-layout-header .ant-menu {
+  background: #F8F9FA;
+}
+.ant-layout-header .ant-menu,
+.ant-layout-header .ant-menu-item,
+.ant-layout-header .ant-menu-item-selected {
+  border: none !important;
+}
+.ant-layout-content .ant-breadcrumb {
+  margin: 12px 0 !important;
+  padding: 16px !important;
+  border: 1px solid #dee2e6;
+  background: #fff;
+}
+.ant-layout-content .ant-breadcrumb span {
+  font-size: 14px;
+}
+.ant-layout-content .ant-content {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  margin-bottom: 12px;
+  padding: 24px 16px;
+  min-height: 750px;
+}
+@media screen and (max-width: 932px) {
+  .navBar {
+    display: none;
+  }
+  .toggleNavBar {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .xsPadding {
+    padding: 0 10px !important;
+  }
+}
