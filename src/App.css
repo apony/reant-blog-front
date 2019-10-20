@@ -35,9 +35,13 @@
   font-size: 16px;
 }
 .ant-layout-header .account {
+  cursor: pointer;
   padding: 0 !important;
   float: right;
   font-weight: 600;
+}
+.ant-layout-header .account.nologin:hover {
+  color: #01a3a4;
 }
 .ant-layout-header .ant-menu {
   background: #F8F9FA;

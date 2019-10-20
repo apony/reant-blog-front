@@ -1,5 +1,5 @@
-import React, { Component,Fragment } from "react";
-import { Route, withRouter,Switch  } from 'react-router-dom'
+import React, { Component, Fragment } from "react";
+import { Route, withRouter, Switch } from 'react-router-dom'
 import './App.less'
 import { Layout, Menu, Breadcrumb, Icon, Row, Col } from 'antd'
 import home from './pages/home'
@@ -8,7 +8,7 @@ import saysay from './pages/saysay'
 import resource from './pages/resource'
 import share from './pages/share'
 import code from './pages/code'
-import LoginDrawer from '@/component/LoginDrawer'
+import LoginDrawer from '@/components/LoginDrawer'
 const { Header, Content, Footer } = Layout;
 
 
@@ -21,7 +21,7 @@ class App extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <Layout style={{ backgroundImage: 'url(' + require('@/assets/images/bg.gif') + ')' }}>
         <Row>
@@ -64,13 +64,13 @@ class App extends Component {
                   代码
                     </Menu.Item>
                 {
-                  this.state.userInfo?
-                      <Menu.Item key="7" className="account">
-                        { this.state.userInfo.nickname || this.state.userInfo.account }
-                      </Menu.Item>:
-                      <Menu.Item key="8" className="account" onClick={this.showLoginDrawer}>
-                        登录/注册
-                      </Menu.Item>
+                  this.state.userInfo ?
+                    <span className="account">
+                      {this.state.userInfo.nickname || this.state.userInfo.account}
+                    </span> :
+                    <span className="account nologin" onClick={this.showLoginDrawer}>
+                      登录/注册
+                      </span>
                 }
               </Menu>
               <div className="toggleNavBar">
@@ -86,28 +86,28 @@ class App extends Component {
                 <Breadcrumb.Item>首页</Breadcrumb.Item>
               </Breadcrumb>
               <div className="ant-content">
-              <Fragment>
-                <Switch>
+                <Fragment>
+                  <Switch>
                     <Route exact path="/" component={home}></Route>
                     <Route path="/note" component={note}></Route>
                     <Route path="/saysay" component={saysay}></Route>
                     <Route path="/resource" component={resource}></Route>
                     <Route path="/share" component={share}></Route>
                     <Route path="/code" component={code}></Route>
-                </Switch>
+                  </Switch>
                 </Fragment>
               </div>
             </Content>
           </Col>
         </Row>
 
-        <LoginDrawer visible={this.state.showLogin} onClose={this.hideLoginDrawer} onLogin={this.onLogin}/>
+        <LoginDrawer visible={this.state.showLogin} onClose={this.hideLoginDrawer} onLogin={this.onLogin} />
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
     )
   }
   //当组件输出到 DOM 后会执行 componentDidMount()
-  componentDidMount() {
+  componentDidMount () {
 
   }
 

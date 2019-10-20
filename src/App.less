@@ -43,9 +43,16 @@
   }
 
   .account {
+    cursor: pointer;
     padding: 0 !important;
     float: right;
     font-weight: 600;
+  }
+
+  .account.nologin {
+    &:hover {
+      color: #01a3a4;
+    }
   }
 
   .ant-menu {
