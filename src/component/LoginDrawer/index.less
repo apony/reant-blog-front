@@ -7,17 +7,30 @@
     flex-direction: column;
     position: relative;
     margin-bottom: 36px;
-    &::after{
-      content: attr(data-msg);
-      position: absolute;
-      top: 40px;
-      font-size: 14px;
-      font-weight: 400;
-      color: #f56c6c;
-    }
+
     .input-style{
       width: 300px;
       height: 40px;
+    }
+
+    &.error-input-wrapper{
+      .input-style{
+        .ant-input{
+          border-color: #f56c6c;
+          &:focus {
+            border-color: #f56c6c;
+            box-shadow: none;
+          }
+        }
+      }
+      &::after{
+        content: attr(data-msg);
+        position: absolute;
+        top: 40px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #f56c6c;
+      }
     }
   }
   .operation-btn{
