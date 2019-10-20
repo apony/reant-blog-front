@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import './index.less'
@@ -167,6 +168,7 @@ class LoginDrawer extends Component {
     }).then(res => {
       if (res.success) {
         message.success(res.msg)
+        Cookies.set('token', res.data.token)
         this.props.onLogin && this.props.onLogin(res.data)
         this.props.onClose && this.props.onClose()
       } else {

@@ -1,6 +1,6 @@
+import Cookies from 'js-cookie'
 // 引入axios
 import axios from 'axios'
-
 
 // 创建axios实例
 const service = axios.create({
@@ -19,6 +19,12 @@ service.interceptors.request.use(
     // config.headers['Token'] = getToken()
     // config.headers['Authorization'] = store.getters.userId
     // }
+    const token = Cookies.get('token');
+    if(token){
+      /*Bearer是JWT的认证头部信息*/
+      config.headers.common['Authorization'] = 'Bearer ' + token;
+    }
+    
     config.headers['Content-Type'] = 'application/json;charset=UTF-8'
     // 每次请求带上时间戳 防刷处理
     if (config.method === 'get' || config.method === 'delete') {
