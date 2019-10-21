@@ -1,13 +1,18 @@
 import React, { Component, Fragment } from "react";
 import { Route, withRouter, Switch } from 'react-router-dom'
 import './App.less'
-import { Layout, Menu, Breadcrumb, Icon, Row, Col } from 'antd'
+import { Layout, Menu, Breadcrumb, Icon, Row, Col, Button } from 'antd'
 import home from './pages/home'
 import note from './pages/note'
 import saysay from './pages/saysay'
 import resource from './pages/resource'
 import share from './pages/share'
 import code from './pages/code'
+
+// 测试redux
+import { connect } from 'react-redux';
+import { increment } from '@/actions';
+
 import LoginDrawer from '@/components/LoginDrawer'
 const { Header, Content, Footer } = Layout;
 
@@ -21,7 +26,7 @@ class App extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <Layout style={{ backgroundImage: 'url(' + require('@/assets/images/bg.gif') + ')' }}>
         <Row>
@@ -63,6 +68,8 @@ class App extends Component {
                   <Icon type="code" theme="filled" />
                   代码
                     </Menu.Item>
+                <span>摸鱼之redux number： {this.props.number} </span>
+                <Button type="primary" onClick={() => this.onClick()}> 点击+1</Button>
                 {
                   this.state.userInfo ?
                     <span className="account">
@@ -100,15 +107,19 @@ class App extends Component {
             </Content>
           </Col>
         </Row>
-
         <LoginDrawer visible={this.state.showLogin} onClose={this.hideLoginDrawer} onLogin={this.onLogin} />
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}><p>Copyright © 2019 apony.xyz(小马哥) All Rights Reserved 粤ICP备52512138号</p><p>骄傲的使用了新一代Web开发框架<a href="https://koa.bootcss.com/" target="_blank">koa</a></p></Footer>
       </Layout>
     )
   }
   //当组件输出到 DOM 后会执行 componentDidMount()
-  componentDidMount () {
+  componentDidMount() {
 
+  }
+
+  // 测试redux
+  onClick = () => {
+    this.props.dispatch(increment())
   }
 
   showLoginDrawer = () => {
@@ -169,5 +180,8 @@ class App extends Component {
     }
   }
 }
-
-export default withRouter(App)
+export default connect(
+  state => ({
+    number: state.number
+  })
+)(withRouter(App));
