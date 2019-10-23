@@ -3,15 +3,22 @@ import request from '@/utils/request'
 
 /**
  *  获取博客列表
- * @param pageNum 页码
- * @param pageSize 页数
+ * @param params
+ * 数据格式(都是可选项)
+ *  pageSize 每页大小
+ *  pageNum 页码
+ *  sort 排序（排序类型 + asc/desc）
+ *  userId 按照用户搜索
+ *  title 按照标题搜索（并没有做）
  */
-export function getBlogList(pageNum,pageSize) {
+function getList(params) {
   return request({
-    url: 'api/blog/get',
-    method: 'get',
-    // params: {
-    //   pageNum,pageSize
-    // }
+    url: 'api/blog/list',
+    method: 'GET',
+    params: params
   })
+}
+
+export default {
+  getList
 }
