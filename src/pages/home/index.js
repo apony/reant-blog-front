@@ -38,8 +38,16 @@ class home extends Component {
   renderBlogRow(item){
     // 界面由小马哥完善
     return <div>
-      <h3>{item.title}</h3>
+      <h3 onClick={this.go.bind(this,item)} style={{cursor:'pointer'}}>{item.title}</h3>
     </div>
+  }
+
+  go(item){
+    blogService.getOne(item._id).then(res => {
+      if(res.success&&res.data){
+        console.log(res.data.item)
+      }
+    })
   }
 }
 export default home

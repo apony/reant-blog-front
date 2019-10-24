@@ -19,6 +19,18 @@ function getList(params) {
   })
 }
 
+/**
+ *  获取单个博客
+ * @param id
+ */
+function getOne(id) {
+  return request({
+    url: `api/blog/${id}`,
+    method: 'GET',
+  })
+}
+
 export default {
-  getList
+  getList,
+  getOne
 }
