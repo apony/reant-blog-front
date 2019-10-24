@@ -43,7 +43,7 @@ class home extends Component {
   }
 
   go(item){
-    blogService.getOne(item._id).then(res => {
+    blogService.getOne(item.id).then(res => {
       if(res.success&&res.data){
         console.log(res.data.item)
       }
