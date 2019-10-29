@@ -11,12 +11,11 @@ import code from './pages/code'
 
 // 测试redux
 import { connect } from 'react-redux';
-import * as Action from '@/store/combineActions';
 import { bindActionCreators } from 'redux';
+import * as combineActions from '@/store/combineActions';
 
 import LoginDrawer from '@/components/LoginDrawer'
 const { Header, Content, Footer } = Layout;
-
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +24,20 @@ class App extends Component {
       showLogin: false,
       userInfo: null,
     }
+
+    const {dispatch} = props;
+
+    // 这是一个很好的 bindActionCreators 的使用示例：
+    // 你想让你的子组件完全不感知 Redux 的存在。
+    // 我们在这里对 action creator 绑定 dispatch 方法，
+    // 以便稍后将其传给子组件。
+
+    this.boundActionCreators = bindActionCreators(combineActions, dispatch);
+    // console.log(this.boundActionCreators);
+    // {
+    //   addTodo: Function,
+    //   removeTodo: Function
+    // }
   }
 
   render() {
@@ -93,8 +106,7 @@ class App extends Component {
               </Breadcrumb>
               <div className="ant-content">
                 <span>摸鱼之redux userInfo： {this.props.userInfo.name} </span>
-                <span>{JSON.stringify(this.props)}</span>
-                {/* <Button type="primary" onClick={this.setUserInfo({name:'test'})}> 点击+1</Button> */}
+                <Button type="primary" onClick={this.setUserInfo}>点击即可赋值为小马哥</Button>
                 <Fragment>
                   <Switch>
                     <Route exact path="/" component={home}></Route>
@@ -116,12 +128,24 @@ class App extends Component {
   }
   //当组件输出到 DOM 后会执行 componentDidMount()
   componentDidMount() {
+    // 由 react-redux 注入的 dispatch：
+    // let { dispatch } = this.props;
 
+    // 注意：这样是行不通的：
+    // combineActions.modifyUserInfo({name:'大马哥'})
+
+    // 你只是调用了创建 action 的方法。
+    // 你必须要同时 dispatch action。
+
+    // 这样做是可行的：
+    // let action = combineActions.modifyUserInfo({name:'小马哥'});
+    // dispatch(action);
   }
 
   // 测试redux
-  onClick = () => {
-    this.setUserInfo()
+  setUserInfo = () => {
+    let { dispatch} = this.props
+    dispatch(combineActions.modifyUserInfo({name:'小马哥'}))
   }
 
   showLoginDrawer = () => {
@@ -182,15 +206,12 @@ class App extends Component {
     }
   }
 }
-const mapStateToProps = (state) => ({
-  userInfo: state.user.userInfo,
-  count: state.incrementReducer
-})
-function mapDispatchToProps(dispatch){
+function mapStateToProps(state) {
   return {
-      ...bindActionCreators(Action, dispatch),
+    userInfo: state.user.userInfo,
+    count: state.incrementReducer
   }
 }
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps
 )(withRouter(App));
