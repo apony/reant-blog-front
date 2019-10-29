@@ -11,7 +11,8 @@ import code from './pages/code'
 
 // 测试redux
 import { connect } from 'react-redux';
-import { increment } from '@/actions';
+import * as Action from '@/store/combineActions';
+import { bindActionCreators } from 'redux';
 
 import LoginDrawer from '@/components/LoginDrawer'
 const { Header, Content, Footer } = Layout;
@@ -68,8 +69,6 @@ class App extends Component {
                   <Icon type="code" theme="filled" />
                   代码
                     </Menu.Item>
-                <span>摸鱼之redux number： {this.props.number} </span>
-                <Button type="primary" onClick={() => this.onClick()}> 点击+1</Button>
                 {
                   this.state.userInfo ?
                     <span className="account">
@@ -93,6 +92,9 @@ class App extends Component {
                 <Breadcrumb.Item>首页</Breadcrumb.Item>
               </Breadcrumb>
               <div className="ant-content">
+                <span>摸鱼之redux userInfo： {this.props.userInfo.name} </span>
+                <span>{JSON.stringify(this.props)}</span>
+                {/* <Button type="primary" onClick={this.setUserInfo({name:'test'})}> 点击+1</Button> */}
                 <Fragment>
                   <Switch>
                     <Route exact path="/" component={home}></Route>
@@ -119,7 +121,7 @@ class App extends Component {
 
   // 测试redux
   onClick = () => {
-    this.props.dispatch(increment())
+    this.setUserInfo()
   }
 
   showLoginDrawer = () => {
@@ -180,8 +182,15 @@ class App extends Component {
     }
   }
 }
+const mapStateToProps = (state) => ({
+  userInfo: state.user.userInfo,
+  count: state.incrementReducer
+})
+function mapDispatchToProps(dispatch){
+  return {
+      ...bindActionCreators(Action, dispatch),
+  }
+}
 export default connect(
-  state => ({
-    number: state.number
-  })
+  mapStateToProps, mapDispatchToProps
 )(withRouter(App));

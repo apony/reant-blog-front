@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
-import incrementReducer from './reducers/index';
+import Reducer from './store/combineReducers';
 
-const store = createStore(incrementReducer);
-
+const store = createStore(Reducer);
+console.log(store.getState())
 export default store;
