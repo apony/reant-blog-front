@@ -139,6 +139,12 @@ class App extends Component {
     // 这样做是可行的：
     // let action = combineActions.modifyUserInfo({name:'小马哥'});
     // dispatch(action);
+
+    if(this.props.userInfo.token){
+      this.setState({
+        userInfo: this.props.userInfo
+      })
+    }
   }
 
   // 测试redux

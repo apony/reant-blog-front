@@ -5,6 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route} from 'react-router-dom'
 import store from './store';
+import {persistor} from './store'
+import {PersistGate} from 'redux-persist/lib/integration/react';
 import { Provider } from 'react-redux';
 
 const Root = () => {
@@ -17,7 +19,10 @@ const Root = () => {
 }
 
 ReactDOM.render(<Provider store={store}>
-  <Root />
+    <PersistGate loading={null} persistor={persistor}>
+        {/*网页内容*/}
+        <Root />
+    </PersistGate>
 </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
