@@ -105,8 +105,7 @@ class App extends Component {
                 <Breadcrumb.Item>首页</Breadcrumb.Item>
               </Breadcrumb>
               <div className="ant-content">
-                <span>摸鱼之redux userInfo： {this.props.userInfo.name} </span>
-                <Button type="primary" onClick={this.setUserInfo}>点击即可赋值为小马哥</Button>
+                <h1>Hello {this.props.userInfo.nickname || this.props.userInfo.account} </h1>
                 <Fragment>
                   <Switch>
                     <Route exact path="/" component={home}></Route>
@@ -163,6 +162,8 @@ class App extends Component {
   onLogin = (userInfo) => {
     this.setState({
       userInfo: userInfo
+    },() => {
+      this.boundActionCreators.modifyUserInfo(this.state.userInfo)
     })
   }
 

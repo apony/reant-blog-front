@@ -1,6 +1,7 @@
 const user = {
   userInfo: {
-    name: 'apony'
+    nickname: 'World',
+    account: '*'
   }
 };
 
