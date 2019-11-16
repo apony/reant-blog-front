@@ -21,5 +21,6 @@ npm run dev
 ```
 
 ## Tip
-- 1.运行服务：http://localhost:6666
-- 2.代理服务：http://localhost:8000
+
+- 1.运行端口：http://localhost:7000
+- 2.代理服务：http://localhost:9000
